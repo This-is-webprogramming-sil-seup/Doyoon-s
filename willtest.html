@@ -1,19 +1,41 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<style>
-    table {
-        width: 100%;
-        border: 1px solid #444444;
-        border-collapse: collapse;
-    }
-    th,
-    td {
-        border: 1px solid #444444;
-    }
-</style>
-<script>
-            var s = '[{"num":"1", "question": "가는 무엇일까요?", "ex1":"보기1번", "ex2":"보기2번", "ex3":"보기3번", "ex4":"보기4번", "ex5":"보기5번", "ans":"ex3", "grade": "20"},'
+    <meta charset="utf-8">
+    <style>
+        table {
+            width: 100%;
+            border: 1px solid #444444;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #444444;
+        }
+    </style>
+    <script>
+        var total_grade = 0;
+        function checkTest() {
+            var chk_obj = document.getElementsByName("check_ans");
+            var checked = 0;
+            for (i = 0; i < chk_obj.length; i++) {
+                if (chk_obj[i].checked == true) {
+                    checked += 1;
+                    if (chk_obj[i].id.split("ans")[1] == test_info[Number(chk_obj[i].value)].ans.split("ex")[1]) {
+                        total_grade += Number(test_info[Number(chk_obj[i].value)].grade);
+                    }
+                }
+            }
+            document.getElementById("result").innerHTML = total_grade;
+        }
+    </script>
+</head>
+
+<body>
+    <script>
+        var s = '[{"num":"1", "question": "가는 무엇일까요?", "ex1":"보기1번", "ex2":"보기2번", "ex3":"보기3번", "ex4":"보기4번", "ex5":"보기5번", "ans":"ex3", "grade": "20"},'
             + '{"num":"2", "question": "나는 무엇일까요?", "ex1":"보기1번", "ex2":"보기2번", "ex3":"보기3번", "ex4":"보기4번", "ex5":"보기5번", "ans":"ex2", "grade": "20"},'
             + '{"num":"3", "question": "다는 무엇일까요?", "ex1":"보기1번", "ex2":"보기2번", "ex3":"보기3번", "ex4":"보기4번", "ex5":"보기5번", "ans":"ex5", "grade": "20"},'
             + '{"num":"4", "question": "라는 무엇일까요?", "ex1":"보기1번", "ex2":"보기2번", "ex3":"보기3번", "ex4":"보기4번", "ex5":"보기5번", "ans":"ex3", "grade": "20"},'
@@ -34,31 +56,14 @@
             document.write("<td width=\"90%\">" + "4) " + test_info[i].ex4 + "</td></tr>");
             document.write("<tr><td width=\"10%\"><input type=\"radio\" id=\"ans5\" name=\"check_ans\" value=\"" + i + "\"></td>");
             document.write("<td width=\"90%\">" + "5) " + test_info[i].ex5 + "</td></tr>");
-            document.write("</form>");       
+            document.write("</form>");
         }
         document.write("</table>");
-        document.write("<input type =\"submit\" value=\"답안 제출\" onclick=\"checkTest();\" />");
+        document.write("<input type =\"button\" value=\"답안 제출\" onclick=\"checkTest();\" />");
         document.write("</form>");
-        function checkTest() {
-            var total_grade = 0;
-            var chk_obj = document.getElementsByName("check_ans");
-            var checked = 0;
-            for (i = 0; i < chk_obj.length; i++) {
-                if (chk_obj[i].checked == true) {
-                    checked += 1;
-                    //alert(chk_obj[i].id.split("ans")[1]);
-                    //alert(test_info[Number(chk_obj[i].value)].ans.split("ex")[1]);
-                    if (chk_obj[i].id.split("ans")[1] == test_info[Number(chk_obj[i].value)].ans.split("ex")[1]) {
-                        total_grade += Number(test_info[Number(chk_obj[i].value)].grade);
-                    }
-                }
-            }
-            //alert(total_grade);
-            document.getElementById("result").innerHTML = total_grade;
-        }
+        document.write("<p id = \'result\'></p>");
+        
     </script>
-</head>
-<body>
-    <p id="result"></p>
 </body>
+
 </html>
