@@ -8,7 +8,7 @@
       height: 45px;
       border: none;
       border-radius: 5px;
-      background-color: #46B4B4;
+      background-color: #00b4ab;
       color: white;
       font-size: 15px;
       font-weight: bold;
@@ -25,7 +25,7 @@
       margin-top: 10px;
     }
     #remain {
-      color: #46B4B4;
+      color: #00b4ab;
       margin-top: 15px;
       margin-bottom: 15px;
     }
@@ -35,7 +35,7 @@
   </style>
   </head>
   <body>
-    <h1 style="font-weight:bold; color: #46B4B4;"> 로그인 페이지 </h1>
+    <h1 style="font-weight:bold; color: #00b4ab;"> 로그인 페이지 </h1>
     <p><span id="UserInfo"></span></p>
     <script>
       function setCookie(name, value, expiredays) { //쿠키 저장함수
@@ -70,7 +70,6 @@
           objLoginPW.focus();
           return;
         }
-
         if (document.getElementById("remain").checked == true) { //아이디 저장을 체크했을 때
           setCookie("id", objLoginID, 7); //쿠키이름을 id로 아이디 입력 필드값을 7일동안 저장
         }
